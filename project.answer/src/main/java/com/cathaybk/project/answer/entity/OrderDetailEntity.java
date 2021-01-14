@@ -6,8 +6,10 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "T_ORDER_DETAIL")
 public class OrderDetailEntity implements Serializable{
 
 	private static final long serialVersionUID = 1L;
