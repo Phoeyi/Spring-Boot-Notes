@@ -2,10 +2,13 @@ package com.cathaybk.project.answer.dto;
 
 import java.sql.Date;
 
+import javax.validation.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CustomerRequest {
 	
+	@NotBlank(message = "客戶ID不得為空")
 	@JsonProperty(value = "CUST_ID")
 	private long customerID;
 

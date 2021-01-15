@@ -15,10 +15,10 @@ public interface CustomerService {
 	/**
 	 * 新增顧客
 	 */
-	void insertCustomer();
+	void insertCustomer(CustomerRequest customerRequest);
 	
 	/**
 	 * 修改顧客
 	 */
-	void updateCustomer();
+	void updateCustomer(CustomerRequest customerRequest);
 }

@@ -1,37 +1,31 @@
-package com.cathaybk.project.answer.entity;
+package com.cathaybk.project.answer.dto;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
-@Entity
-@Table(name = "T_ORDER")
-public class OrderEntity implements Serializable{
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-	private static final long serialVersionUID = 1L;
+public class OrderRequest {
 
-	@Id
-	@Column(name = "ORDER_NO")
+	@NotBlank(message = "訂單編號不得為空")
+	@JsonProperty(value = "ORDER_NO")
 	private long orderNo;
 
-	@Column(name = "CUST_ID")
+	@JsonProperty(value = "CUST_ID")
 	private String customerID;
-	
-	@Column(name = "MONEY")
+
+	@JsonProperty(value = "MONEY")
 	private BigDecimal money;
-	
-	@Column(name = "EMP_ID")
+
+	@JsonProperty(value = "EMP_ID")
 	private String empID;
-	
-	@Column(name = "OREDER_DATE")
+
+	@JsonProperty(value = "OREDER_DATE")
 	private Date orderDate;
-	
-	@Column(name = "ARRIVAL_DATE")
+
+	@JsonProperty(value = "ARRIVAL_DATE")
 	private Date arrivalDate;
 
 	public long getOrderNo() {
@@ -81,5 +75,4 @@ public class OrderEntity implements Serializable{
 	public void setArrivalDate(Date arrivalDate) {
 		this.arrivalDate = arrivalDate;
 	}
-	
 }

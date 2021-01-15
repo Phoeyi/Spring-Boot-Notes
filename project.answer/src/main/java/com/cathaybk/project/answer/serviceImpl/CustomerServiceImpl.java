@@ -22,32 +22,32 @@ public class CustomerServiceImpl implements CustomerService {
 	 * 查詢顧客
 	 */
 	@Override
-	public CustomerResponse queryCustomer(CustomerRequest customerRequest) throws DataNotFoundException{
+	public CustomerResponse queryCustomer(CustomerRequest customerRequest) throws DataNotFoundException {
 
 		// 查詢
 		Optional<CustomerEntity> optional = customerRepository.findById(customerRequest.getCustomerID());
-		if(optional == null || optional.isEmpty()) {
+		if (optional == null || optional.isEmpty()) {
 			throw new DataNotFoundException();
 		}
-		
+
 		// 組回傳資料格式
 		CustomerResponse customerResponse = new CustomerResponse();
 		CustomerResponse.Data customerInnerData = new CustomerResponse.Data();
-		
+
 		CustomerEntity customerEntity = optional.get();
-		
+
 		customerInnerData.setCustomerID(customerEntity.getCustomerID());
 		customerInnerData.setName(customerEntity.getName());
 		customerInnerData.setID(customerEntity.getID());
 		customerInnerData.setBirthDay(customerEntity.getBirthDay());
 		customerInnerData.setSex(customerEntity.getSex());
-		
+
 		List<CustomerResponse.Data> list = new ArrayList<>();
 		list.add(customerInnerData);
 		customerResponse.setDatas(list);
-		
+
 		customerResponse.setMessage("success");
-		
+
 		return customerResponse;
 	}
 
@@ -55,18 +55,33 @@ public class CustomerServiceImpl implements CustomerService {
 	 * 新增顧客
 	 */
 	@Override
-	public void insertCustomer() {
-		// TODO Auto-generated method stub
+	public void insertCustomer(CustomerRequest customerRequest) {
 
+		CustomerEntity customerEntity = new CustomerEntity();
+
+		customerEntity.setCustomerID(customerRequest.getCustomerID());
+		customerEntity.setName(customerRequest.getName());
+		customerEntity.setBirthDay(customerRequest.getBirthDay());
+		customerEntity.setID(customerRequest.getID());
+		customerEntity.setSex(customerRequest.getSex());
+
+		customerRepository.save(customerEntity);
 	}
 
 	/**
 	 * 更新顧客
 	 */
 	@Override
-	public void updateCustomer() {
-		// TODO Auto-generated method stub
+	public void updateCustomer(CustomerRequest customerRequest) {
+		CustomerEntity customerEntity = new CustomerEntity();
 
+		customerEntity.setCustomerID(customerRequest.getCustomerID());
+		customerEntity.setName(customerRequest.getName());
+		customerEntity.setBirthDay(customerRequest.getBirthDay());
+		customerEntity.setID(customerRequest.getID());
+		customerEntity.setSex(customerRequest.getSex());
+
+		customerRepository.save(customerEntity);
 	}
 
 }
